@@ -94,6 +94,13 @@ export const apiAuth = {
     return res;
   },
 
+  verifyOtp: async (email: string, otp: number): Promise<any> => {
+    return await request<any>('/auth/verify-otp', {
+      method: 'POST',
+      body: JSON.stringify({ email, otp: Number(otp) }),
+    });
+  },
+
   loginAsGuest: async (name: string = 'Guest User', email: string = 'guest@fixmate.com'): Promise<any> => {
     const res = await request<any>('/auth/loginAsGuest', {
       method: 'POST',

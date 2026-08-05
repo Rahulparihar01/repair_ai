@@ -19,7 +19,27 @@ def test_endpoints():
     print(f"GET /health -> status: {res.status_code}, body: {res.json()}")
     assert res.status_code == 200
 
-    # 2. Login demo user
+    # 2. Register & Verify OTP flow test
+    test_email = "newuser@fixmate.com"
+    reg_res = client.post("/auth/register", json={
+        "name": "New Test User",
+        "number": 15559998888,
+        "email": test_email,
+        "password": "password123",
+        "confirmPassword": "password123",
+        "role": "customer",
+        "subscription_plan": "Premium Plan"
+    })
+    print(f"POST /auth/register -> status: {reg_res.status_code}")
+
+    # OTP verification
+    otp_res = client.post("/auth/verify-otp", json={
+        "email": test_email,
+        "otp": 123456
+    })
+    print(f"POST /auth/verify-otp -> status: {otp_res.status_code}")
+
+    # 3. Login demo user
     login_res = client.post("/auth/login", json={
         "email": "alex@fixmate.com",
         "password": "password123"

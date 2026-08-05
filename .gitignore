@@ -1,3 +1,45 @@
-/frontend/node_modules
-/backend/venv
-__pycache__
+# Dependencies & Node
+node_modules/
+/frontend/node_modules/
+.pnpm-store/
+.yarn/
+
+# Frontend Build & Cache Outputs
+/frontend/dist/
+/frontend/build/
+/frontend/.vite/
+
+# Python Cache & Compiled Files
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.pytest_cache/
+.coverage
+
+# Virtual Environments
+venv/
+/backend/venv/
+.venv/
+env/
+
+# Databases & Local Data
+*.db
+*.sqlite
+*.sqlite3
+/backend/*.db
+/backend/*.sqlite
+
+# Environment Files & Secrets
+.env
+.env.local
+.env.*.local
+/backend/.env
+
+# IDEs & System Files
+.DS_Store
+Thumbs.db
+.idea/
+.vscode/
+*.swp
+*.swo

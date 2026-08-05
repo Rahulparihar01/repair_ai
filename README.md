@@ -170,18 +170,27 @@ npm run build
 
 ## 📡 API Endpoint Overview
 
-| Method | Endpoint | Description | Auth Required |
+In REST/OpenAPI standards:
+* **`Bearer Token Required: ❌`**: Public authentication endpoints used to register, verify OTP, or issue tokens (no HTTP `Authorization` header required).
+* **`Bearer Token Required: ✅`**: Protected endpoints requiring a valid JWT (`Authorization: Bearer <token>`).
+
+| Method | Endpoint | Description | Bearer Token Required |
 | :--- | :--- | :--- | :---: |
 | `GET` | `/health` | Liveness health check | ❌ |
 | `POST` | `/auth/login` | User login & JWT issuance | ❌ |
-| `POST` | `/auth/register` | User registration | ❌ |
-| `POST` | `/auth/loginAsGuest` | Guest demo login | ❌ |
-| `GET` | `/profile/get_profile` | Fetch user profile data | ✅ |
+| `POST` | `/auth/register` | User registration (creates OTP) | ❌ |
+| `POST` | `/auth/verify-otp` | 6-digit OTP verification | ❌ |
+| `POST` | `/auth/loginAsGuest` | Guest demo login & JWT issuance | ❌ |
+| `POST` | `/auth/forget` | Password reset request | ❌ |
+| `GET` | `/profile/get_profile` | Fetch authenticated user profile | ✅ |
+| `PATCH` | `/profile/update_Image` | Upload avatar profile image | ✅ |
 | `GET` | `/bookings/` | Fetch user's bookings | ✅ |
 | `POST` | `/bookings/` | Create new service booking | ✅ |
-| `POST` | `/ai/diagnose` | Run AI fault diagnosis | ✅ |
-| `GET` | `/subscriptions/my` | Fetch active subscription | ✅ |
-| `POST` | `/subscriptions/subscribe` | Upgrade subscription plan | ✅ |
+| `PATCH` | `/bookings/{id}/status` | Update booking status | ✅ |
+| `POST` | `/ai/diagnose` | Run AI fault diagnosis triage | ✅ |
+| `GET` | `/ai/history` | View past AI diagnostic history | ✅ |
+| `GET` | `/subscriptions/my` | Fetch active subscription plan | ✅ |
+| `POST` | `/subscriptions/subscribe` | Upgrade care subscription plan | ✅ |
 
 ---
 
